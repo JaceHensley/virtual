@@ -41,7 +41,7 @@ void main() {
 | `itemSize` | `Size | List<Size> | ItemSizeCallback` | Yes | - | Either a fixed size, a list containing the sizes of all the items in your list, or a function that returns the size of an item given its index. |
 | `itemRenderer` | `ItemRenderer` | Yes | - | Returns a `ReactElement` given it's index and whether the list is currently scrolling. |
 
-See more props [here](#shared-virtual-collection-props.
+See more props [here](#shared-virtual-collection-props).
 
 ## VirtualTree
 
@@ -87,7 +87,7 @@ void main() {
 | `root` | `TreeNode` | Yes | - | The backing tree node structure of the virtual tree. |
 | `nodeRenderer` | `NodeRenderer` | Yes | - | Returns a `ReactElement` given it's index, whether the list is currently scrolling, and the backing `TreeNode`. |
 
-See more props [here](#shared-virtual-collection-props.
+See more props [here](#shared-virtual-collection-props).
 
 ## Shared Virtual Collection Props
 
