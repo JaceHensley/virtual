@@ -1,6 +1,8 @@
 # virtual
 > A Dart virtualition library.
 
+[![Build Status](https://travis-ci.org/JaceHensley/virtual.svg?branch=master)](https://travis-ci.org/JaceHensley/virtual)
+[![codecov.io](http://codecov.io/github/JaceHensley/virtual/coverage.svg?branch=master)](http://codecov.io/github/JaceHensley/virtual?branch=master)
 ![dart](https://img.shields.io/badge/%3C%2F%3E-Dart-blue.svg)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/JaceHensley/virtual/blob/master/LICENSE)
 
