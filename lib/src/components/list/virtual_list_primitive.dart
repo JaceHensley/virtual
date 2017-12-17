@@ -34,8 +34,10 @@ UiFactory<VirtualListPrimitiveProps> VirtualListPrimitive;
 
 @Props()
 class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualProps {
+  /// The scroll offset of the list.
   int offset;
 
+  /// Whether the list is being scrolled.
   bool isScrolling;
 }
 

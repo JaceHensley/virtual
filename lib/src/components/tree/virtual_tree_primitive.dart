@@ -31,6 +31,7 @@ UiFactory<VirtualTreePrimitiveProps> VirtualTreePrimitive;
 
 @Props()
 class VirtualTreePrimitiveProps extends UiProps with SharedVirtualTreeProps {
+  /// The list of visible nodes.
   @requiredProp
   List<TreeNode> visibleNodes;
 }

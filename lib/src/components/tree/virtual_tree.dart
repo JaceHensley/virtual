@@ -36,6 +36,7 @@ class VirtualTreeProps extends UiProps with SharedVirtualProps, SharedVirtualTre
 
 @State()
 class VirtualTreeState extends UiState {
+  /// The list of currently visible nodes.
   List<TreeNode> visibleNodes;
 }
 

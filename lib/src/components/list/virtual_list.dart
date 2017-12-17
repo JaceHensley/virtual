@@ -38,6 +38,7 @@ class VirtualListState extends UiState {
   /// Current scroll offset of the list.
   int offset;
 
+  /// Whether the list is currently scrolling.
   bool isScrolling;
 }
 
@@ -95,18 +96,18 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
   // --------------------------------------------------------------------------
 
   void scrollToOffset(int offset) {
-    // _scrollingTimeout = new Timer(const Duration(milliseconds: 250), () {
-    //   _scrollingTimeout = null;
-    //   if (state.isScrolling) {
-    //     setState(newState()
-    //       ..isScrolling = false
-    //     );
-    //   }
-    // });
+    _scrollingTimeout = new Timer(const Duration(milliseconds: 50), () {
+      _scrollingTimeout = null;
+      if (state.isScrolling) {
+        setState(newState()
+          ..isScrolling = false
+        );
+      }
+    });
 
     setState(newState()
       ..offset = offset
-      // ..isScrolling = true
+      ..isScrolling = true
     );
   }
 
