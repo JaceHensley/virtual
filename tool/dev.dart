@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import 'package:dart_dev/dart_dev.dart' show dev, config;
+import 'package:dart_dev/dart_dev.dart' show Environment, TestRunnerConfig, config, dev;
 
 main(List<String> args) async {
   const directories = const <String>[
@@ -30,6 +30,31 @@ main(List<String> args) async {
 
   config.analyze.entryPoints = directories;
   config.copyLicense.directories = directories;
+
+  config.genTestRunner.configs = [
+    new TestRunnerConfig(
+      directory: 'test',
+      env: Environment.browser,
+      filename: 'generated_runner_test',
+      preTestCommands: [
+        'setClientConfiguration();',
+        'enableTestMode();',
+      ],
+      dartHeaders: [
+        "import 'package:over_react/over_react.dart' show enableTestMode, setClientConfiguration;",
+      ],
+      genHtml: true,
+      htmlHeaders: const [
+        '<script src="packages/react/react_with_addons.js"></script>',
+        '<script src="packages/react/react_dom.js"></script>'
+      ],
+    ),
+  ];
+
+  config.test
+    ..platforms = ['vm', 'content-shell']
+    ..pubServe = true
+    ..unitTests = ['test/generated_runner_test.dart'];
 
   await dev(args);
 }

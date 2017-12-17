@@ -99,6 +99,7 @@ class VirtualTreeComponent extends UiStatefulComponent<VirtualTreeProps, Virtual
       ..addProps(copyUnconsumedProps())
       ..visibleNodes = state.visibleNodes
       ..ref = (ref) { _primitiveRef = ref; }
+      ..addTestId('VirtualTree.VirtualTreePrimitive')
     )();
   }
 

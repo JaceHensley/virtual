@@ -24,10 +24,11 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:meta/meta.dart';
+import 'package:quiver_hashcode/hashcode.dart';
 
 import 'package:virtual/src/components.dart';
 
-class TreeNode<T> {
+class TreeNode<T> extends Object {
   final T content;
   final StreamController<Null> _updatesController;
 
@@ -46,6 +47,12 @@ class TreeNode<T> {
   TreeNode(this.content, {@required Size size, bool isCollapsed = false, Iterable<TreeNode<T>> children = const []}) : _size = size, _isCollapsed = isCollapsed, _updatesController = new StreamController<Null>.broadcast() {
     _addChildren(children);
   }
+
+  @override
+  bool operator ==(other) => other.hashCode == hashCode;
+
+  @override
+  int get hashCode => hash2(content, _depth);
 
   // --------------------------------------------------------------------------
   // Private Utility Methods
@@ -87,6 +94,8 @@ class TreeNode<T> {
       _children.remove(child);
     }
   }
+
+
 
   // --------------------------------------------------------------------------
   // Public API Methods

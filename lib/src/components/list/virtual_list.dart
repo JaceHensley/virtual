@@ -75,6 +75,7 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
       ..isScrolling = state.isScrolling
       ..onListScroll = _handleListScroll
       ..ref = (ref) { _primitiveRef = ref; }
+      ..addTestId('VirtualList.VirtualListPrimitive')
     )();
   }
 
@@ -112,6 +113,8 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
   }
 
   /// Recompute the calculated sizes from [startIndex].
+  ///
+  /// Proxies [VirtualListPrimitiveComponent.recomputeSizes].
   void recomputeSizes([int startIndex = 0]) {
     _primitiveRef.recomputeSizes(startIndex);
   }

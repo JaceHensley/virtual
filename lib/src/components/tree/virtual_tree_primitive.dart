@@ -30,7 +30,7 @@ import 'package:virtual/src/components.dart';
 UiFactory<VirtualTreePrimitiveProps> VirtualTreePrimitive;
 
 @Props()
-class VirtualTreePrimitiveProps extends UiProps with SharedVirtualTreeProps {
+class VirtualTreePrimitiveProps extends UiProps with SharedVirtualProps, SharedVirtualTreeProps {
   /// The list of visible nodes.
   @requiredProp
   List<TreeNode> visibleNodes;
@@ -59,20 +59,13 @@ class VirtualTreePrimitiveComponent extends UiComponent<VirtualTreePrimitiveProp
 
   @override
   render() {
-    return _renderList();
-  }
-
-  // --------------------------------------------------------------------------
-  // Private Render Methods
-  // --------------------------------------------------------------------------
-
-  ReactElement _renderList() {
     return (VirtualList()
       ..addProps(copyUnconsumedProps())
       ..itemCount = props.visibleNodes.length
       ..itemSize = props.visibleNodes.map((node) => node.size).toList()
       ..itemRenderer = _nodeRenderer
       ..ref = (ref) { _virtualListRef = ref; }
+      ..addTestId('VirtualTreePrimitive.VirtualList')
     )();
   }
 

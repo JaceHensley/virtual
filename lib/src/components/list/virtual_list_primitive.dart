@@ -35,9 +35,13 @@ UiFactory<VirtualListPrimitiveProps> VirtualListPrimitive;
 @Props()
 class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualProps {
   /// The scroll offset of the list.
+  ///
+  /// Default: `0`
   int offset;
 
   /// Whether the list is being scrolled.
+  ///
+  /// Default: `false`
   bool isScrolling;
 }
 
@@ -107,12 +111,14 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
       ..onScroll = _handleListScroll
       ..style = _getRootStyles()
       ..ref = (ref) { _rootNode = ref; }
+      ..addTestId('VirtualListPrimitive.root')
     )(inner);
   }
 
   ReactElement _renderInnerWrapper(List<ReactElement> children) {
     return (Dom.div()
       ..style = _getInnerWrapperStyles()
+      ..addTestId('VirtualListPrimitive.innerWrapper')
     )(children);
   }
 
@@ -138,7 +144,7 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     }
 
     if (props.onItemsRendered != null) {
-      props.onItemsRendered(start,stop);
+      props.onItemsRendered(start, stop);
     }
 
     return items;
@@ -148,6 +154,7 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     return (Dom.div()
       ..style = _getItemWrapperStyle(index)
       ..key = index
+      ..addTestId('VirtualListPrimitive.child')
     )(
       props.itemRenderer(index, props.isScrolling)
     );
@@ -198,7 +205,6 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   Map<String, dynamic> _getInnerWrapperStyles() {
     return {
       'position': 'relative',
-      'overflow': 'relative',
       'width': '100%',
       'minHeight': '100%',
       props.scrollDirection.directionStyleKey: _sizeAndPositionManager.getTotalSize()
@@ -238,6 +244,7 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   // Public API Methods
   // --------------------------------------------------------------------------
 
+  /// Recompute the calculated sizes from [startIndex].
   void recomputeSizes([int startIndex = 0]) {
     _styleCache = {};
     _sizeAndPositionManager.resetCacheToIndex(startIndex);
