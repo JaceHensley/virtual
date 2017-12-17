@@ -10,14 +10,12 @@ import 'node.dart' as tree;
 void main() {
   setClientConfiguration();
 
-  var root = makeTree();
-
   var content = (VirtualTree()
     ..scrollDirection = ScrollDirection.vertical
     ..height = '500px'
     ..width = 'auto'
     ..overscanCount = 100
-    ..root = root
+    ..root = makeTree()
     ..nodeRenderer = (index, isScrolling, node) {
       return (tree.Node()
         ..isScrolling = isScrolling

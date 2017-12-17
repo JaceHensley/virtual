@@ -1,4 +1,5 @@
 import 'package:meta/meta.dart';
+
 import 'package:over_react/over_react.dart';
 import 'package:virtual/virtual.dart';
 
@@ -9,7 +10,7 @@ UiFactory<NodeProps> Node;
 class NodeProps extends UiProps with BaseTreeNodePropsMixin {}
 
 @Component()
-class NodeComponent extends UiComponent<NodeProps> with BaseTreeNodeComponentMixin<NodeProps> {
+class NodeComponent extends UiComponent<NodeProps> with BaseTreeNodeMixin<NodeProps> {
   String get expanderText => props.node.isCollapsed ? 'Expand' : 'Collapse';
 
   @override

@@ -30,7 +30,7 @@ abstract class SharedVirtualTreeProps implements UiProps {
   @override
   Map get props;
 
-  /// Number of items to render.
+  /// The backing tree node structure of the virtual tree.
   @requiredProp
   TreeNode root;
 

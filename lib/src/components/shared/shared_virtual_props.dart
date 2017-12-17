@@ -34,11 +34,11 @@ abstract class SharedVirtualProps implements UiProps {
   @override
   Map get props;
 
-  /// The overall height of the VirtualListPrimitive
+  /// The overall height of the virtual collection.
   @requiredProp
   String height;
 
-  /// The overall width of the VirtualListPrimitive
+  /// The overall width of the virtual collection.
   @requiredProp
   String width;
 

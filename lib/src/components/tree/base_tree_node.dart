@@ -55,7 +55,7 @@ class BaseTreeNodePropsMixinMapView extends UiPropsMixinMapView with BaseTreeNod
 }
 
 @AbstractComponent()
-abstract class  BaseTreeNodeComponentMixin<T extends BaseTreeNodePropsMixin> implements UiComponent<T> {
+abstract class  BaseTreeNodeMixin<T extends BaseTreeNodePropsMixin> implements UiComponent<T> {
   // --------------------------------------------------------------------------
   // Public Utility Methods
   // --------------------------------------------------------------------------
