@@ -24,12 +24,9 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
-import 'package:virtual/src/internal.dart';
 
 @PropsMixin()
 abstract class SharedVirtualListProps implements UiProps, SharedVirtualProps {
-  static final SharedVirtualListPropsMapView defaultProps = new SharedVirtualListPropsMapView({});
-
   @override
   Map get props;
 
@@ -44,8 +41,4 @@ abstract class SharedVirtualListProps implements UiProps, SharedVirtualProps {
   /// Function to return a [ReactElement] based on the index of the item.
   @requiredProp
   ItemRenderer itemRenderer;
-}
-
-class SharedVirtualListPropsMapView extends UiPropsMixinMapView with SharedVirtualListProps, SharedVirtualProps {
-  SharedVirtualListPropsMapView(Map map) : super(map);
 }

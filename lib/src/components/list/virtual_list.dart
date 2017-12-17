@@ -49,7 +49,6 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
 
   @override
   Map getDefaultProps() => (newProps()
-    ..addProps(SharedVirtualListProps.defaultProps)
     ..addProps(SharedVirtualProps.defaultProps)
   );
 

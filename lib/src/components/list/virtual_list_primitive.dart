@@ -49,7 +49,6 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
 
   @override
   Map getDefaultProps() => (newProps()
-    ..addProps(SharedVirtualListProps.defaultProps)
     ..addProps(SharedVirtualProps.defaultProps)
     ..offset = 0
     ..isScrolling = false

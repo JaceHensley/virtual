@@ -50,7 +50,6 @@ class VirtualTreeComponent extends UiStatefulComponent<VirtualTreeProps, Virtual
   @override
   Map getDefaultProps() => (newProps()
     ..addProps(SharedVirtualProps.defaultProps)
-    ..addProps(SharedVirtualTreeProps.defaultProps)
   );
 
   @override

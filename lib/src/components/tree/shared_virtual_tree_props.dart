@@ -24,12 +24,9 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
-import 'package:virtual/src/internal.dart';
 
 @PropsMixin()
 abstract class SharedVirtualTreeProps implements UiProps {
-  static final SharedVirtualTreePropsMapView defaultProps = new SharedVirtualTreePropsMapView({});
-
   @override
   Map get props;
 
@@ -40,8 +37,4 @@ abstract class SharedVirtualTreeProps implements UiProps {
   /// Function to return a [ReactElement] based on the index and [TreeNode] of the item.
   @requiredProp
   NodeRenderer nodeRenderer;
-}
-
-class SharedVirtualTreePropsMapView extends UiPropsMixinMapView with SharedVirtualTreeProps {
-  SharedVirtualTreePropsMapView(Map map) : super(map);
 }
