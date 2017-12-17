@@ -1,6 +1,8 @@
 # virtual
+> A Dart virtualition library.
 
-Virtual component library based on [https://github.com/clauderic/react-tiny-virtual-list](https://github.com/clauderic/react-tiny-virtual-list).
+![dart](https://img.shields.io/badge/%3C%2F%3E-Dart-blue.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/JaceHensley/virtual/blob/master/LICENSE)
 
 ## VirtualList
 
@@ -42,6 +44,13 @@ void main() {
 | `itemRenderer` | `ItemRenderer` | Yes | - | Returns a `ReactElement` given it's index and whether the list is currently scrolling. |
 
 See more props [here](#shared-virtual-collection-props).
+
+### API Methods
+
+| Name | Description |
+|:-----|:-----|
+| `scrollToOffset(int offset)` | Scroll the list to the specified offset. |
+| `recomputeSizes([int startIndex = 0])` | Recompute the calculated sizes from the specificed index. |
 
 ## VirtualTree
 
@@ -88,6 +97,13 @@ void main() {
 | `nodeRenderer` | `NodeRenderer` | Yes | - | Returns a `ReactElement` given it's index, whether the list is currently scrolling, and the backing `TreeNode`. |
 
 See more props [here](#shared-virtual-collection-props).
+
+### API Methods
+
+| Name | Description |
+|:-----|:-----|
+| `primitiveRef` | [VirtualListComponent](#api-methods-1). |
+| `recomputeSizes([int startIndex = 0])` | Recompute the calculated sizes from the specificed index. |
 
 ## Shared Virtual Collection Props
 
@@ -201,3 +217,15 @@ class NodeComponent extends UiComponent<NodeProps> with BaseTreeNodeMixin<NodePr
 | `node` | `TreeNode` | Yes | - | The backing `TreeNode` of this component. |
 | `index` | `int` | Yes | - | The index of this component. |
 | `isScrolling` | `bool` | No | `false` | Whether the component is being scrolled. |
+
+### API Methods
+
+| Name | Description |
+|:-----|:-----|
+| `expand({bool all = false})` | Expand the backing `TreeNode`, optionally expand all child nodes. |
+| `collapse({bool all = false})` | Collapse the backing `TreeNode`, optionally collapse all child nodes. |
+| `toggle({bool all = false})` | Toggle the expanded state of the backing `TreeNode`, optionally toggle all child nodes. |
+
+## Acknowledgments
+
+This library's `VirtualList` is a Dart port of [react-tiny-virtual-list](https://github.com/clauderic/react-tiny-virtual-list#acknowledgments)'s `VirtualList`, with some added features. And the `VirtualTree` renders the said `VirtualList`.

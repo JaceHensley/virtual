@@ -94,6 +94,7 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
   // Public API Methods
   // --------------------------------------------------------------------------
 
+  /// Scroll the list to [offset].
   void scrollToOffset(int offset) {
     _scrollingTimeout = new Timer(const Duration(milliseconds: 50), () {
       _scrollingTimeout = null;
@@ -110,6 +111,7 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
     );
   }
 
+  /// Recompute the calculated sizes from [startIndex].
   void recomputeSizes([int startIndex = 0]) {
     _primitiveRef.recomputeSizes(startIndex);
   }
