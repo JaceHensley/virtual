@@ -56,5 +56,12 @@ main(List<String> args) async {
     ..pubServe = true
     ..unitTests = ['test/generated_runner_test.dart'];
 
+   config.coverage
+    ..html = false
+    ..pubServe = true
+    ..reportOn = [
+      'lib/'
+    ];
+
   await dev(args);
 }
