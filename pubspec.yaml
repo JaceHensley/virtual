@@ -1,0 +1,23 @@
+name: virtual
+description: A UI framework for virtual lists and trees.
+version: 0.0.1
+homepage: https://www.github.com/JaceHensley/virtual
+author: Jace Hensley <jacehensley@gmail.com>
+
+environment:
+  sdk: ">=1.24.0 <2.0.0"
+
+dependencies:
+  collection: ^1.14.3
+  meta: ^1.1.2
+  over_react: ^1.19.0
+
+dev_dependencies:
+  browser: ^0.10.0+2
+  dart_dev: ^1.8.0
+  dart_to_js_script_rewriter: ^1.0.1
+  react: ">=3.6.0 <5.0.0"
+
+transformers:
+- over_react
+- dart_to_js_script_rewriter
