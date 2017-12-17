@@ -25,10 +25,14 @@ import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:over_react/over_react.dart';
 
+import 'package:virtual/src/internal.dart';
 import 'package:virtual/virtual.dart';
 
 @PropsMixin()
 abstract class BaseTreeNodePropsMixin implements UiProps {
+  static BaseTreeNodePropsMixinMapView defaultProps = new BaseTreeNodePropsMixinMapView({})
+    ..isScrolling = false;
+
   @override
   Map get props;
 
@@ -39,6 +43,15 @@ abstract class BaseTreeNodePropsMixin implements UiProps {
   /// The index of this component.
   @requiredProp
   int index;
+
+  /// Whether the component is being scrolled.
+  ///
+  /// Default: `false`
+  bool isScrolling;
+}
+
+class BaseTreeNodePropsMixinMapView extends UiPropsMixinMapView with BaseTreeNodePropsMixin {
+  BaseTreeNodePropsMixinMapView(Map map) : super(map);
 }
 
 @AbstractComponent()

@@ -13,6 +13,11 @@ class NodeComponent extends UiComponent<NodeProps> with BaseTreeNodeComponentMix
   String get expanderText => props.node.isCollapsed ? 'Expand' : 'Collapse';
 
   @override
+  Map getDefaultProps() => (newProps()
+    ..addProps(BaseTreeNodePropsMixin.defaultProps)
+  );
+
+  @override
   @mustCallSuper
   void componentWillMount() {
     super.componentWillMount();
@@ -38,28 +43,38 @@ class NodeComponent extends UiComponent<NodeProps> with BaseTreeNodeComponentMix
       ..['boxSizing'] = 'border-box'
       ..['height'] = '100%';
 
+    var children =[];
+
+    if (props.isScrolling) {
+      children.add('Loading');
+    } else {
+      children.addAll([
+        props.node.content,
+        _renderToggleButton(),
+        _renderToggleAllButton(),
+      ]);
+    }
+
     return (Dom.div()
       ..style = style
-    )(
-      props.node.content,
-      _renderExpandButton(),
-      _renderExpandAllButton(),
-    );
+    )(children);
   }
 
-  ReactElement _renderExpandButton() {
+  ReactElement _renderToggleButton() {
     if (props.node.isLeaf) return null;
 
     return (Dom.button()
       ..onClick = _handleExpansionToggleClick
+      ..key = 'toggle'
     )(expanderText);
   }
 
-  ReactElement _renderExpandAllButton() {
+  ReactElement _renderToggleAllButton() {
     if (props.node.isLeaf) return null;
 
     return (Dom.button()
       ..onClick = _handleExpansionAllToggleClick
+      ..key = 'toggle all'
     )('$expanderText all');
   }
 

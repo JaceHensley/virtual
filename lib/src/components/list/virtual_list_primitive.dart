@@ -146,16 +146,18 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   }
 
   ReactElement _renderChild(int index) {
-    var item = props.isScrolling ? _renderScrollingItem() : props.itemRenderer(index);
+    var item;
+
+    if (props.isScrolling && props.scrollingItemRenderer != null) {
+      item = props.scrollingItemRenderer(index);
+    } else {
+      item = props.itemRenderer(index);
+    }
 
     return (Dom.div()
       ..style = _getItemWrapperStyle(index)
       ..key = index
     )(item);
-  }
-
-  ReactElement _renderScrollingItem() {
-    return Dom.div()('loading...');
   }
 
   // --------------------------------------------------------------------------

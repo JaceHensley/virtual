@@ -40,6 +40,9 @@ abstract class SharedVirtualTreeProps implements UiProps {
   /// Function to return a [ReactElement] based on the index and [TreeNode] of the item.
   @requiredProp
   NodeRenderer nodeRenderer;
+
+  /// Function to return a "light-weight" [ReactElement] based on the index and [TreeNode] of the item.
+  NodeRenderer scrollingNodeRenderer;
 }
 
 class SharedVirtualTreePropsMapView extends UiPropsMixinMapView with SharedVirtualTreeProps {

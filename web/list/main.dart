@@ -18,6 +18,9 @@ void main() {
     ..itemRenderer = (index) {
       return Dom.div()('Item $index');
     }
+    ..scrollingItemRenderer = (index) {
+      return Dom.div()('Loding...');
+    }
   )();
 
   react_dom.render(content, querySelector('#output'));

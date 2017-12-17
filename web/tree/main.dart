@@ -25,6 +25,14 @@ void main() {
         ..node = node
       )();
     }
+    ..scrollingNodeRenderer = (index, node) {
+      return (tree.Node()
+        ..isScrolling = true
+        ..key = index
+        ..index = index
+        ..node = node
+      )();
+    }
   )();
 
   react_dom.render(content, querySelector('#output'));
