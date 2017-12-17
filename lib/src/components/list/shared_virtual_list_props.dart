@@ -44,9 +44,6 @@ abstract class SharedVirtualListProps implements UiProps, SharedVirtualProps {
   /// Function to return a [ReactElement] based on the index of the item.
   @requiredProp
   ItemRenderer itemRenderer;
-
-  /// Function to return a "light-weight" [ReactElement] based on the index of the item.
-  ItemRenderer scrollingItemRenderer;
 }
 
 class SharedVirtualListPropsMapView extends UiPropsMixinMapView with SharedVirtualListProps, SharedVirtualProps {

@@ -18,16 +18,9 @@ void main() {
     ..width = 'auto'
     ..overscanCount = 100
     ..root = root
-    ..nodeRenderer = (index, node) {
+    ..nodeRenderer = (index, isScrolling, node) {
       return (tree.Node()
-        ..key = index
-        ..index = index
-        ..node = node
-      )();
-    }
-    ..scrollingNodeRenderer = (index, node) {
-      return (tree.Node()
-        ..isScrolling = true
+        ..isScrolling = isScrolling
         ..key = index
         ..index = index
         ..node = node

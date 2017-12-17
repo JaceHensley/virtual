@@ -72,12 +72,9 @@ class VirtualTreePrimitiveComponent extends UiComponent<VirtualTreePrimitiveProp
       ..itemCount = props.visibleNodes.length
       ..itemSize = props.visibleNodes.map((node) => node.size).toList()
       ..itemRenderer = _nodeRenderer
-      ..scrollingItemRenderer = _scrollingNodeRenderer
       ..ref = (ref) { _virtualListRef = ref; }
     )();
   }
 
-  ReactElement _nodeRenderer(int index) => props.nodeRenderer(index, props.visibleNodes[index]);
-
-  ReactElement _scrollingNodeRenderer(int index) => (props.scrollingNodeRenderer ?? props.nodeRenderer)(index, props.visibleNodes[index]);
+  ReactElement _nodeRenderer(int index, bool isScrolling) => props.nodeRenderer(index, isScrolling, props.visibleNodes[index]);
 }

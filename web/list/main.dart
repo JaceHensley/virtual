@@ -15,11 +15,8 @@ void main() {
     ..width = 'auto'
     ..overscanCount = 100
     ..itemCount = 10000
-    ..itemRenderer = (index) {
-      return Dom.div()('Item $index');
-    }
-    ..scrollingItemRenderer = (index) {
-      return Dom.div()('Loding...');
+    ..itemRenderer = (index, isScrolling) {
+      return Dom.div()(isScrolling ? 'Loading...' : 'Item $index');
     }
   )();
 

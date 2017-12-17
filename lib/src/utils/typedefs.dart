@@ -24,8 +24,8 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 
-typedef ReactElement ItemRenderer(int itemIndex);
-typedef ReactElement NodeRenderer(int itemIndex, TreeNode node);
+typedef ReactElement ItemRenderer(int itemIndex, bool isScrolling);
+typedef ReactElement NodeRenderer(int itemIndex, bool isScrolling, TreeNode node);
 typedef ListScrollCalback(SyntheticUIEvent event, int offset);
 typedef ItemScrolledCalback(int startIndex, int endIndex);
 typedef Size ItemSizeCallback(int itemIndex);
