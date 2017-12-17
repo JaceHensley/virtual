@@ -27,12 +27,17 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
+import 'package:virtual/src/internal.dart';
 
 @Factory()
 UiFactory<VirtualListPrimitiveProps> VirtualListPrimitive;
 
 @Props()
-class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualProps, SharedVirtualPrimitiveProps {}
+class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualProps {
+  int offset;
+
+  bool isScrolling;
+}
 
 @Component()
 class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProps> {
@@ -44,7 +49,8 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   Map getDefaultProps() => (newProps()
     ..addProps(SharedVirtualListProps.defaultProps)
     ..addProps(SharedVirtualProps.defaultProps)
-    ..addProps(SharedVirtualPrimitiveProps.defaultProps)
+    ..offset = 0
+    ..isScrolling = false
   );
 
   @mustCallSuper
@@ -113,10 +119,10 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     int containerSize;
 
     switch (props.scrollDirection) {
-      case Direction.vertical:
+      case ScrollDirection.vertical:
         containerSize = new CssValue.parse(props.height).number.toInt();
         break;
-      case Direction.horizontal:
+      case ScrollDirection.horizontal:
         containerSize = new CssValue.parse(props.width).number.toInt();
         break;
     }
@@ -173,10 +179,10 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     int offset;
 
     switch (props.scrollDirection) {
-      case Direction.vertical:
+      case ScrollDirection.vertical:
         offset = _rootNode.scrollTop;
         break;
-      case Direction.horizontal:
+      case ScrollDirection.horizontal:
         offset = _rootNode.scrollLeft;
         break;
     }
@@ -222,10 +228,10 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     if (_rootNode == null) return;
 
     switch (props.scrollDirection) {
-      case Direction.vertical:
+      case ScrollDirection.vertical:
         _rootNode.scrollTop = value;
         break;
-      case Direction.horizontal:
+      case ScrollDirection.horizontal:
         _rootNode.scrollLeft = value;
         break;
     }

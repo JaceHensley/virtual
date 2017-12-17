@@ -20,24 +20,5 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import 'package:over_react/over_react.dart';
-
-import 'package:virtual/src/utils.dart';
-
-@PropsMixin()
-abstract class SharedVirtualPrimitiveProps implements UiProps {
-  static final SharedVirtualPrimitivePropsMapView defaultProps = new SharedVirtualPrimitivePropsMapView({})
-    ..offset = 0
-    ..isScrolling = false;
-
-  @override
-  Map get props;
-
-  int offset;
-
-  bool isScrolling;
-}
-
-class SharedVirtualPrimitivePropsMapView extends UiPropsMixinMapView with SharedVirtualPrimitiveProps {
-  SharedVirtualPrimitivePropsMapView(Map map) : super(map);
-}
+export 'internal/size_and_position_manager.dart';
+export 'internal/ui_props_mixin_map_view.dart';

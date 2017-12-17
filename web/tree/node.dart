@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:over_react/over_react.dart';
 import 'package:virtual/virtual.dart';
@@ -7,26 +6,18 @@ import 'package:virtual/virtual.dart';
 UiFactory<NodeProps> Node;
 
 @Props()
-class NodeProps extends UiProps {
-  TreeNode node;
-  int index;
-}
-
-@State()
-class NodeState extends UiState {}
+class NodeProps extends UiProps with BaseTreeNodePropsMixin {}
 
 @Component()
-class NodeComponent extends UiStatefulComponent<NodeProps, NodeState> {
-  StreamSubscription _subscription;
-
+class NodeComponent extends UiComponent<NodeProps> with BaseTreeNodeComponentMixin<NodeProps> {
   String get expanderText => props.node.isCollapsed ? 'Expand' : 'Collapse';
 
-   @override
+  @override
   @mustCallSuper
   void componentWillMount() {
     super.componentWillMount();
 
-    _subscription = props.node.stream.listen((_) => redraw());
+    bindSub();
   }
 
   @override
@@ -34,8 +25,7 @@ class NodeComponent extends UiStatefulComponent<NodeProps, NodeState> {
   void componentWillUnmount() {
     super.componentWillUnmount();
 
-    _subscription.cancel();
-    _subscription = null;
+    unbindSub();
   }
 
   @override
@@ -73,22 +63,12 @@ class NodeComponent extends UiStatefulComponent<NodeProps, NodeState> {
     )('$expanderText all');
   }
 
-  void _handleExpansionAllToggleClick(SyntheticMouseEvent event) {
-    if (props.node.isCollapsed) {
-      props.node.expand(all: true);
-    } else {
-      props.node.collapse(all: true);
-    }
-    event.stopPropagation();
+  void _handleExpansionAllToggleClick(_) {
+    toggle(all: true);
   }
 
-  void _handleExpansionToggleClick(SyntheticMouseEvent event) {
-    if (props.node.isCollapsed) {
-      props.node.expand();
-    } else {
-      props.node.collapse();
-    }
-    event.stopPropagation();
+  void _handleExpansionToggleClick(_) {
+    toggle();
   }
 
   String _getBackgroundColor(num n) {

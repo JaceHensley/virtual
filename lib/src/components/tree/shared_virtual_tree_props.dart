@@ -24,6 +24,7 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
+import 'package:virtual/src/internal.dart';
 
 @PropsMixin()
 abstract class SharedVirtualTreeProps implements UiProps {
@@ -36,7 +37,7 @@ abstract class SharedVirtualTreeProps implements UiProps {
   @requiredProp
   TreeNode root;
 
-  /// Function to return a [ReactElement] based on the index of the item.
+  /// Function to return a [ReactElement] based on the index and [TreeNode] of the item.
   @requiredProp
   NodeRenderer nodeRenderer;
 }

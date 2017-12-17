@@ -32,7 +32,7 @@ class SizeAndPositionManager {
 
   final ItemSizeCallback _itemSizeGetter;
   Map<int, SizeAndPosition> _itemSizeAndPositionData;
-  final Direction direction;
+  final ScrollDirection direction;
   int _lastMeasuredIndex;
 
   SizeAndPositionManager(this._itemSizeGetter, this.itemCount, this.direction) : _itemSizeAndPositionData = {}, _lastMeasuredIndex = -1;

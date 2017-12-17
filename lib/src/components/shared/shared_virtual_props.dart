@@ -22,7 +22,9 @@
 
 import 'package:over_react/over_react.dart';
 
+import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
+import 'package:virtual/src/internal.dart';
 
 @PropsMixin()
 abstract class SharedVirtualProps implements UiProps {
@@ -42,7 +44,7 @@ abstract class SharedVirtualProps implements UiProps {
 
   /// Which direction the virtual scrolls, either vertical or horizontal.
   @requiredProp
-  Direction scrollDirection;
+  ScrollDirection scrollDirection;
 
   /// The number of extra items to be rendered outside the visible items.
   int overscanCount;
@@ -56,19 +58,4 @@ abstract class SharedVirtualProps implements UiProps {
 
 class SharedVirtualPropsMapView extends UiPropsMixinMapView with SharedVirtualProps {
   SharedVirtualPropsMapView(Map map) : super(map);
-}
-
-class Direction extends DebugFriendlyConstant {
-  final directionStyleKey;
-  final positionStyleKey;
-
-  const Direction._(String name, this.directionStyleKey, this.positionStyleKey) : super(name);
-
-  static const vertical = const Direction._('vertical', 'height', 'top');
-  static const horizontal = const Direction._('horizontal', 'width', 'left');
-
-  bool get isVertical => this == vertical;
-
-  @override
-  String get debugDescription => 'directionStyleKey: $directionStyleKey, positionStyleKey: $positionStyleKey';
 }

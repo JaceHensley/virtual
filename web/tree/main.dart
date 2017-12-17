@@ -13,7 +13,7 @@ void main() {
   var root = makeTree();
 
   var content = (VirtualTree()
-    ..scrollDirection = Direction.vertical
+    ..scrollDirection = ScrollDirection.vertical
     ..height = '500px'
     ..width = 'auto'
     ..overscanCount = 100

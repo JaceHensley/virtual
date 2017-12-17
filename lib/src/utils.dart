@@ -20,6 +20,4 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-export 'utils/size_and_position_manager.dart';
 export 'utils/typedefs.dart';
-export 'utils/utils.dart';

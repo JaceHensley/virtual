@@ -29,13 +29,13 @@ class Size {
   Size(this.width, this.height);
   Size.autoWidth(this.height) : this.width = null;
   Size.autoHeight(this.width) : this.height = null;
-  factory Size.autoWithDirection(Direction direction, int size) {
+  factory Size.autoWithDirection(ScrollDirection direction, int size) {
     if (direction.isVertical) return new Size.autoHeight(size);
 
     return new Size.autoWidth(size);
   }
 
-  int ofDirection(Direction direction) {
+  int ofDirection(ScrollDirection direction) {
     return direction.isVertical ? height ?? 0 : width ?? 0;
   }
 }

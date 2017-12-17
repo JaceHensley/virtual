@@ -20,6 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+export 'tree/base_tree_node.dart';
 export 'tree/shared_virtual_tree_props.dart';
 export 'tree/tree_node.dart';
 export 'tree/virtual_tree.dart';

@@ -20,6 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-export 'shared/shared_virtual_primitive_props.dart';
+export 'shared/scroll_direction.dart';
 export 'shared/shared_virtual_props.dart';
 export 'shared/size.dart';

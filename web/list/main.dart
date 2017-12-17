@@ -10,7 +10,7 @@ void main() {
 
   var content = (VirtualList()
     ..itemSize = new Size.autoWidth(34)
-    ..scrollDirection = Direction.vertical
+    ..scrollDirection = ScrollDirection.vertical
     ..height = '500px'
     ..width = 'auto'
     ..overscanCount = 100

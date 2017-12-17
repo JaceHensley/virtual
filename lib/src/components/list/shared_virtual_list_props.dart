@@ -24,6 +24,7 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
+import 'package:virtual/src/internal.dart';
 
 @PropsMixin()
 abstract class SharedVirtualListProps implements UiProps, SharedVirtualProps {
