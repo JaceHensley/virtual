@@ -47,7 +47,7 @@ See more props [here](#shared-virtual-collection-props).
 
 ### Example Usage
 
-```
+```dart
 import 'dart:html';
 
 import 'package:react/react_dom.dart' as react_dom;
