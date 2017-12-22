@@ -33,7 +33,7 @@ import 'package:virtual/src/internal.dart';
 UiFactory<VirtualListPrimitiveProps> VirtualListPrimitive;
 
 @Props()
-class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualProps {
+class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualCollectionProps {
   /// The scroll offset of the list.
   ///
   /// Default: `0`
@@ -47,13 +47,13 @@ class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, Sha
 
 @Component()
 class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProps> {
-  Element _rootNode;
+  VirtualViewportComponent _viewportRef;
   SizeAndPositionManager _sizeAndPositionManager;
   Map<int, Map<String, dynamic>> _styleCache = {};
 
   @override
   Map getDefaultProps() => (newProps()
-    ..addProps(SharedVirtualProps.defaultProps)
+    ..addProps(SharedVirtualCollectionProps.defaultProps)
     ..offset = 0
     ..isScrolling = false
   );
@@ -93,34 +93,35 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     }
 
     if (itemPropsHaveChanged) recomputeSizes();
-    if (listOffsetHasChanged) _scrollToOffset(tNextProps.offset);
+    if (listOffsetHasChanged) scrollToOffset(tNextProps.offset);
   }
 
   @override
   render() {
-    return _renderRoot(_renderInnerWrapper(_renderChildren()));
+    Size contentSize;
+
+    switch (props.scrollDirection) {
+      case ScrollDirection.horizontal:
+        contentSize = new Size.autoHeight(_sizeAndPositionManager.getTotalSize());
+        break;
+      case ScrollDirection.vertical:
+        contentSize = new Size.autoWidth(_sizeAndPositionManager.getTotalSize());
+        break;
+    }
+
+    return (VirtualViewport()
+      ..addProps(copyUnconsumedProps())
+      ..height = props.height
+      ..width = props.width
+      ..contentSize = contentSize
+      ..onViewportScroll = _handleViewportScroll
+      ..ref = (ref) { _viewportRef = ref; }
+    )(_renderChildren());
   }
 
   // --------------------------------------------------------------------------
   // Private Render Methods
   // --------------------------------------------------------------------------
-
-  ReactElement _renderRoot(ReactElement inner) {
-    return (Dom.div()
-      ..addProps(copyUnconsumedDomProps())
-      ..onScroll = _handleListScroll
-      ..style = _getRootStyles()
-      ..ref = (ref) { _rootNode = ref; }
-      ..addTestId('VirtualListPrimitive.root')
-    )(inner);
-  }
-
-  ReactElement _renderInnerWrapper(List<ReactElement> children) {
-    return (Dom.div()
-      ..style = _getInnerWrapperStyles()
-      ..addTestId('VirtualListPrimitive.innerWrapper')
-    )(children);
-  }
 
   List<ReactElement> _renderChildren() {
     int containerSize;
@@ -164,51 +165,39 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   // Private Utility Methods
   // --------------------------------------------------------------------------
 
-  void _handleListScroll(SyntheticUIEvent event) {
-    if (event.target != _rootNode) return;
-    if (_rootNode == null) return;
-
-    var offset = _getOffset();
-
-    if (offset.isNegative) return;
-
+  void _handleViewportScroll(SyntheticUIEvent event, Point point) {
     if (props.onListScroll != null) {
+      int offset;
+
+      switch (props.scrollDirection) {
+        case ScrollDirection.horizontal:
+          offset = point.x;
+          break;
+        case ScrollDirection.vertical:
+          offset = point.y;
+          break;
+        default:
+      }
+
       props.onListScroll(event, offset);
     }
   }
 
   int _getOffset() {
-    if (_rootNode == null) return 0;
+    if (_viewportRef == null) return 0;
 
     int offset;
 
     switch (props.scrollDirection) {
       case ScrollDirection.vertical:
-        offset = _rootNode.scrollTop;
+        offset = _viewportRef.getOffset().y;
         break;
       case ScrollDirection.horizontal:
-        offset = _rootNode.scrollLeft;
+        offset = _viewportRef.getOffset().x;
         break;
     }
 
     return offset;
-  }
-
-  Map<String, dynamic> _getRootStyles() {
-    return {
-      'height': props.height,
-      'width': props.width,
-      'overflow': 'auto',
-    }..addAll(newStyleFromProps(props));
-  }
-
-  Map<String, dynamic> _getInnerWrapperStyles() {
-    return {
-      'position': 'relative',
-      'width': '100%',
-      'minHeight': '100%',
-      props.scrollDirection.directionStyleKey: _sizeAndPositionManager.getTotalSize()
-    };
   }
 
   Map<String, dynamic> _getItemWrapperStyle(int index) {
@@ -227,19 +216,6 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
     return _styleCache[index];
   }
 
-  void _scrollToOffset(int value) {
-    if (_rootNode == null) return;
-
-    switch (props.scrollDirection) {
-      case ScrollDirection.vertical:
-        _rootNode.scrollTop = value;
-        break;
-      case ScrollDirection.horizontal:
-        _rootNode.scrollLeft = value;
-        break;
-    }
-  }
-
   // --------------------------------------------------------------------------
   // Public API Methods
   // --------------------------------------------------------------------------
@@ -248,5 +224,20 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   void recomputeSizes([int startIndex = 0]) {
     _styleCache = {};
     _sizeAndPositionManager.resetCacheToIndex(startIndex);
+  }
+
+  void scrollToOffset(int offset) {
+    Point point;
+
+    switch (props.scrollDirection) {
+      case ScrollDirection.vertical:
+        point = new Point(0, offset);
+        break;
+      case ScrollDirection.horizontal:
+        point = new Point(offset, 0);
+        break;
+    }
+
+    _viewportRef.scrollToPoint(point);
   }
 }

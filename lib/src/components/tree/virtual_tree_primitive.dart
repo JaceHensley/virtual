@@ -30,7 +30,7 @@ import 'package:virtual/src/components.dart';
 UiFactory<VirtualTreePrimitiveProps> VirtualTreePrimitive;
 
 @Props()
-class VirtualTreePrimitiveProps extends UiProps with SharedVirtualProps, SharedVirtualTreeProps {
+class VirtualTreePrimitiveProps extends UiProps with SharedVirtualTreeProps, SharedVirtualCollectionProps {
   /// The list of visible nodes.
   @requiredProp
   List<TreeNode> visibleNodes;
@@ -45,7 +45,7 @@ class VirtualTreePrimitiveComponent extends UiComponent<VirtualTreePrimitiveProp
 
   @override
   Map getDefaultProps() => (newProps()
-    ..addProps(SharedVirtualProps.defaultProps)
+    ..addProps(SharedVirtualCollectionProps.defaultProps)
   );
 
   @override
@@ -64,10 +64,18 @@ class VirtualTreePrimitiveComponent extends UiComponent<VirtualTreePrimitiveProp
       ..itemCount = props.visibleNodes.length
       ..itemSize = props.visibleNodes.map((node) => node.size).toList()
       ..itemRenderer = _nodeRenderer
+      ..onItemsRendered = _handleItemsRendered
+      ..onListScroll = props.onTreeScroll
       ..ref = (ref) { _virtualListRef = ref; }
       ..addTestId('VirtualTreePrimitive.VirtualList')
     )();
   }
 
   ReactElement _nodeRenderer(int index, bool isScrolling) => props.nodeRenderer(index, isScrolling, props.visibleNodes[index]);
+
+  void _handleItemsRendered(int startIndex, int endIndex) {
+    if (props.onNodesRendered != null) {
+      props.onNodesRendered(startIndex, endIndex, props.visibleNodes[startIndex], props.visibleNodes[endIndex]);
+    }
+  }
 }

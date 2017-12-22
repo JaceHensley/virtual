@@ -21,5 +21,5 @@
 // SOFTWARE.
 
 export 'shared/scroll_direction.dart';
-export 'shared/shared_virtual_props.dart';
+export 'shared/shared_virtual_collection_props.dart';
 export 'shared/size.dart';

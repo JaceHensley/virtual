@@ -26,7 +26,7 @@ import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
 
 @PropsMixin()
-abstract class SharedVirtualTreeProps implements UiProps {
+abstract class SharedVirtualTreeProps implements UiProps, SharedVirtualCollectionProps {
   @override
   Map get props;
 
@@ -37,4 +37,10 @@ abstract class SharedVirtualTreeProps implements UiProps {
   /// Function to return a [ReactElement] based on the index and [TreeNode] of the item.
   @requiredProp
   NodeRenderer nodeRenderer;
+
+  /// Optional callback that is called when new items are rendered.
+  NodesRenderedCalback onNodesRendered;
+
+  /// Optional callback that is called when the list is scrolled.
+  TreeScrollCalback onTreeScroll;
 }

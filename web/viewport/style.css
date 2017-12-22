@@ -1,0 +1,31 @@
+.content {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom right, aliceblue, gold);
+}
+
+.position__label {
+  position: absolute;
+  background: white;
+  padding: 5px;
+}
+
+.position__label--nw {
+  top: 0;
+  left: 0;
+}
+
+.position__label--ne {
+  top: 0;
+  right: 0;
+}
+
+.position__label--se {
+  bottom: 0;
+  right: 0;
+}
+
+.position__label--sw {
+  bottom: 0;
+  left: 0;
+}

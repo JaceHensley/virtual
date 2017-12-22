@@ -26,7 +26,7 @@ import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
 
 @PropsMixin()
-abstract class SharedVirtualListProps implements UiProps, SharedVirtualProps {
+abstract class SharedVirtualListProps implements UiProps, SharedVirtualCollectionProps {
   @override
   Map get props;
 
@@ -41,4 +41,10 @@ abstract class SharedVirtualListProps implements UiProps, SharedVirtualProps {
   /// Function to return a [ReactElement] based on the index of the item.
   @requiredProp
   ItemRenderer itemRenderer;
+
+  /// Optional callback that is called when new items are rendered.
+  ItemsRenderedCalback onItemsRendered;
+
+  /// Optional callback that is called when the list is scrolled.
+  ListScrollCalback onListScroll;
 }

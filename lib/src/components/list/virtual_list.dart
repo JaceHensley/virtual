@@ -31,7 +31,7 @@ import 'package:virtual/src/components.dart';
 UiFactory<VirtualListProps> VirtualList;
 
 @Props()
-class VirtualListProps extends UiProps with SharedVirtualListProps, SharedVirtualProps {}
+class VirtualListProps extends UiProps with SharedVirtualListProps, SharedVirtualCollectionProps {}
 
 @State()
 class VirtualListState extends UiState {
@@ -49,7 +49,7 @@ class VirtualListComponent extends UiStatefulComponent<VirtualListProps, Virtual
 
   @override
   Map getDefaultProps() => (newProps()
-    ..addProps(SharedVirtualProps.defaultProps)
+    ..addProps(SharedVirtualCollectionProps.defaultProps)
   );
 
   @override
