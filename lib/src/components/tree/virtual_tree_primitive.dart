@@ -25,6 +25,7 @@ import 'package:meta/meta.dart';
 import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
+import 'package:virtual/src/utils.dart';
 
 @Factory()
 UiFactory<VirtualTreePrimitiveProps> VirtualTreePrimitive;
@@ -59,10 +60,11 @@ class VirtualTreePrimitiveComponent extends UiComponent<VirtualTreePrimitiveProp
 
   @override
   render() {
+    var itemSizeCollection = new ItemSizeCollection.variable(props.visibleNodes.map((node) => node.size).toList());
+
     return (VirtualList()
       ..addProps(copyUnconsumedProps())
-      ..itemCount = props.visibleNodes.length
-      ..itemSize = props.visibleNodes.map((node) => node.size).toList()
+      ..itemSizes = itemSizeCollection
       ..itemRenderer = _nodeRenderer
       ..onItemsRendered = _handleItemsRendered
       ..onListScroll = props.onTreeScroll

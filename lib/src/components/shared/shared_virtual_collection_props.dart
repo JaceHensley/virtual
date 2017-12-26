@@ -2,6 +2,7 @@ import 'package:over_react/over_react.dart';
 
 import 'package:virtual/src/components.dart';
 import 'package:virtual/src/internal.dart';
+import 'package:virtual/src/utils.dart';
 
 @PropsMixin()
 abstract class SharedVirtualCollectionProps implements UiProps {

@@ -30,13 +30,8 @@ abstract class SharedVirtualListProps implements UiProps, SharedVirtualCollectio
   @override
   Map get props;
 
-  /// Number of items to render.
   @requiredProp
-  int itemCount;
-
-  /// Size | List<Size> | [ItemSizeCallback].
-  @requiredProp
-  dynamic itemSize;
+  ItemSizeCollection itemSizes;
 
   /// Function to return a [ReactElement] based on the index of the item.
   @requiredProp

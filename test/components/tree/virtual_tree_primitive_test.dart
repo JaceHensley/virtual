@@ -42,11 +42,12 @@ void main() {
           return Dom.div()('Item $index');
         }
       )(), autoTearDown: false, mountNode: mountNode, attachedToDocument: true);
-      var virtualTreePrimitiveProps = VirtualListPrimitive(getPropsByTestId(jacket.getInstance(), 'VirtualTreePrimitive.VirtualList'));
+      var virtualTreePrimitiveProps = VirtualTreePrimitive(getProps(jacket.getInstance()));
+      var virtualListPrimitiveProps = VirtualListPrimitive(getPropsByTestId(jacket.getInstance(), 'VirtualTreePrimitive.VirtualList'));
 
-      expect(virtualTreePrimitiveProps.itemCount, visibleNodes.length);
-      expect(virtualTreePrimitiveProps.itemSize, visibleNodes.map((node) => node.size).toList());
-      expect(virtualTreePrimitiveProps.itemRenderer, isNotNull);
+      expect(virtualListPrimitiveProps.itemSizes.length, visibleNodes.length);
+      expect(virtualListPrimitiveProps.itemSizes, virtualTreePrimitiveProps.visibleNodes.map((node) => node.size).toList());
+      expect(virtualListPrimitiveProps.itemRenderer, isNotNull);
     });
   });
 }

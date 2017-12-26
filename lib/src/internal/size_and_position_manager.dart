@@ -28,14 +28,13 @@ import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
 
 class SizeAndPositionManager {
-  int itemCount;
+  ItemSizeCollection itemSizeCollection;
 
-  final ItemSizeCallback _itemSizeGetter;
   Map<int, SizeAndPosition> _itemSizeAndPositionData;
   final ScrollDirection direction;
   int _lastMeasuredIndex;
 
-  SizeAndPositionManager(this._itemSizeGetter, this.itemCount, this.direction) : _itemSizeAndPositionData = {}, _lastMeasuredIndex = -1;
+  SizeAndPositionManager(this.itemSizeCollection, this.direction) : _itemSizeAndPositionData = {}, _lastMeasuredIndex = -1;
 
   // --------------------------------------------------------------------------
   // Public API Methods
@@ -56,13 +55,13 @@ class SizeAndPositionManager {
 
     var stop = start;
 
-    while (offset < maxOffset && stop < itemCount - 1) {
+    while (offset < maxOffset && stop < itemSizeCollection.length - 1) {
       stop++;
       offset += getSizeAndPositionForIndex(stop).size.ofDirection(direction);
     }
 
     start = max(0, start - overscanCount);
-    stop = min(stop + overscanCount, itemCount - 1);
+    stop = min(stop + overscanCount, itemSizeCollection.length - 1);
 
     return new Range(
       start: start,
@@ -77,11 +76,11 @@ class SizeAndPositionManager {
   int getTotalSize() {
     var lastMeasuredSizeAndPosition = _getSizeAndPositionOfLastMeasuredItem();
 
-    return lastMeasuredSizeAndPosition.offset + lastMeasuredSizeAndPosition.size.ofDirection(direction) + (itemCount - _lastMeasuredIndex - 1);
+    return lastMeasuredSizeAndPosition.offset + lastMeasuredSizeAndPosition.size.ofDirection(direction) + (itemSizeCollection.length - _lastMeasuredIndex - 1);
   }
 
   SizeAndPosition getSizeAndPositionForIndex(int index) {
-    if (index == null || index >= itemCount) {
+    if (index == null || index >= itemSizeCollection.length) {
       throw new Error();
     }
 
@@ -91,7 +90,7 @@ class SizeAndPositionManager {
         lastMeasuredSizeAndPosition.size.ofDirection(direction);
 
       for (var i = _lastMeasuredIndex + 1; i <= index; i++) {
-        var size = _itemSizeGetter(i);
+        var size = itemSizeCollection[i];
 
         if (size == null) throw new Error();
 
@@ -172,7 +171,7 @@ class SizeAndPositionManager {
     var interval = 1;
 
     while (
-      index < itemCount &&
+      index < itemSizeCollection.length &&
       getSizeAndPositionForIndex(index).offset < offset
     ) {
       index += interval;
@@ -180,7 +179,7 @@ class SizeAndPositionManager {
     }
 
     return _binarySearch(
-      high: min(index, itemCount - 1),
+      high: min(index, itemSizeCollection.length - 1),
       low: (index / 2).floor(),
       offset: offset,
     );

@@ -29,6 +29,7 @@ class Size {
   Size(this.width, this.height);
   Size.autoWidth(this.height) : this.width = null;
   Size.autoHeight(this.width) : this.height = null;
+  Size.auto() : this.width = null, this.height = null;
   factory Size.autoWithDirection(ScrollDirection direction, int size) {
     if (direction.isVertical) return new Size.autoHeight(size);
 

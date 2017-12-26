@@ -20,4 +20,5 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+export 'utils/item_size_collection.dart';
 export 'utils/typedefs.dart';

@@ -27,8 +27,7 @@ void main() {
         var jacket = mount<VirtualListComponent>((VirtualList()
           ..height = '100px'
           ..width = '200px'
-          ..itemCount = 10
-          ..itemSize = new Size.autoWidth(10)
+          ..itemSizes = new ItemSizeCollection.fixed(10, new Size.autoWidth(10))
           ..scrollDirection = ScrollDirection.vertical
           ..itemRenderer = (index, isScrolling) {
             return Dom.div()('Item $index');
@@ -45,8 +44,7 @@ void main() {
         var jacket = mount<VirtualListComponent>((VirtualList()
           ..height = '100px'
           ..width = '200px'
-          ..itemCount = 10
-          ..itemSize = new Size.autoWidth(10)
+          ..itemSizes = new ItemSizeCollection.fixed(10, new Size.autoWidth(10))
           ..scrollDirection = ScrollDirection.vertical
           ..itemRenderer = (index, isScrolling) {
             return Dom.div()('Item $index');
@@ -62,8 +60,7 @@ void main() {
         var jacket = mount<VirtualListComponent>((VirtualList()
           ..height = '100px'
           ..width = '200px'
-          ..itemCount = 10
-          ..itemSize = new Size.autoWidth(10)
+          ..itemSizes = new ItemSizeCollection.fixed(10, new Size.autoWidth(10))
           ..scrollDirection = ScrollDirection.vertical
           ..itemRenderer = (index, isScrolling) {
             return Dom.div()('Item $index');
@@ -80,8 +77,7 @@ void main() {
       var jacket = mount<VirtualListComponent>((VirtualList()
         ..height = '100px'
         ..width = '200px'
-        ..itemCount = 10
-        ..itemSize = new Size.autoWidth(10)
+        ..itemSizes = new ItemSizeCollection.fixed(10, new Size.autoWidth(10))
         ..scrollDirection = ScrollDirection.vertical
         ..itemRenderer = (index, isScrolling) {
           return Dom.div()('Item $index');

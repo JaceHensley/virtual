@@ -63,19 +63,7 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
   void componentWillMount() {
     super.componentWillMount();
 
-    Size getSize(int index) {
-      if (props.itemSize is ItemSizeCallback) {
-        return props.itemSize(index);
-      } else if (props.itemSize is List<Size>) {
-        return props.itemSize[index];
-      } else if (props.itemSize is Size) {
-        return props.itemSize;
-      } else {
-        throw new PropError.value(props.itemSize, 'SharedVirtualListPrimitiveProps.itemSize');
-      }
-    }
-
-    _sizeAndPositionManager = new SizeAndPositionManager(getSize, props.itemCount, props.scrollDirection);
+    _sizeAndPositionManager = new SizeAndPositionManager(props.itemSizes, props.scrollDirection);
   }
 
   @mustCallSuper
@@ -85,15 +73,12 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
 
     var tNextProps = typedPropsFactory(nextProps);
 
-    var itemPropsHaveChanged = tNextProps.itemCount != props.itemCount || tNextProps.itemSize != props.itemSize;
-    var listOffsetHasChanged = tNextProps.offset != props.offset;
-
-    if (tNextProps.itemCount != props.itemCount) {
-      _sizeAndPositionManager.itemCount = tNextProps.itemCount;
+    if (!tNextProps.itemSizes.equals(props.itemSizes)) {
+      _sizeAndPositionManager.itemSizeCollection = tNextProps.itemSizes;
+      recomputeSizes();
     }
 
-    if (itemPropsHaveChanged) recomputeSizes();
-    if (listOffsetHasChanged) scrollToOffset(tNextProps.offset);
+    if (tNextProps.offset != props.offset) scrollToOffset(tNextProps.offset);
   }
 
   @override

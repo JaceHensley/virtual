@@ -9,12 +9,11 @@ void main() {
   setClientConfiguration();
 
   var content = (VirtualList()
-    ..itemSize = new Size.autoWidth(34)
+    ..itemSizes = new ItemSizeCollection.fixed(10000, new Size.autoWidth(34))
     ..scrollDirection = ScrollDirection.vertical
     ..height = '500px'
     ..width = 'auto'
     ..overscanCount = 100
-    ..itemCount = 10000
     ..itemRenderer = (index, isScrolling) {
       return Dom.div()(isScrolling ? 'Loading...' : 'Item $index');
     }
