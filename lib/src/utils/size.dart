@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import 'package:virtual/src/components.dart';
+import 'package:virtual/src/utils.dart';
 
 class Size {
   final int width;

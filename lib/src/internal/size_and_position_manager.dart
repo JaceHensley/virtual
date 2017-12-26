@@ -24,7 +24,6 @@ import 'dart:math';
 
 import 'package:meta/meta.dart';
 
-import 'package:virtual/src/components.dart';
 import 'package:virtual/src/utils.dart';
 
 class SizeAndPositionManager {

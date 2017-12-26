@@ -24,7 +24,7 @@ import 'dart:collection';
 
 import 'package:collection/collection.dart';
 
-import 'package:virtual/src/components/shared.dart';
+import 'package:virtual/src/utils.dart';
 
 abstract class ItemSizeCollection implements List<Size> {
   factory ItemSizeCollection.fixed(int count, Size size) {

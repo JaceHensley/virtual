@@ -26,7 +26,7 @@ import 'dart:collection';
 import 'package:meta/meta.dart';
 import 'package:quiver_hashcode/hashcode.dart';
 
-import 'package:virtual/src/components.dart';
+import 'package:virtual/src/utils.dart';
 
 class TreeNode<T> extends Object {
   final T content;

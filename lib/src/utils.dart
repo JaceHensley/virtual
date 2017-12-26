@@ -21,4 +21,6 @@
 // SOFTWARE.
 
 export 'utils/item_size_collection.dart';
+export 'utils/scroll_direction.dart';
+export 'utils/size.dart';
 export 'utils/typedefs.dart';
