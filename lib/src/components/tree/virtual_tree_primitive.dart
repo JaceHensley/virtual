@@ -30,7 +30,7 @@ import 'package:virtual/src/components.dart';
 UiFactory<VirtualTreePrimitiveProps> VirtualTreePrimitive;
 
 @Props()
-class VirtualTreePrimitiveProps extends UiProps with SharedVirtualTreeProps, SharedVirtualCollectionProps {
+class VirtualTreePrimitiveProps extends UiProps with SharedVirtualTreeProps, SharedVirtualProps, SharedVirtualCollectionProps {
   /// The list of visible nodes.
   @requiredProp
   List<TreeNode> visibleNodes;

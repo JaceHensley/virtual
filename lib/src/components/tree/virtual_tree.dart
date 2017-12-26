@@ -32,7 +32,7 @@ import 'package:virtual/src/components.dart';
 UiFactory<VirtualTreeProps> VirtualTree;
 
 @Props()
-class VirtualTreeProps extends UiProps with SharedVirtualTreeProps, SharedVirtualCollectionProps {}
+class VirtualTreeProps extends UiProps with SharedVirtualTreeProps, SharedVirtualProps, SharedVirtualCollectionProps {}
 
 @State()
 class VirtualTreeState extends UiState {

@@ -7,6 +7,7 @@ import './components/list/virtual_list_primitive_test.dart' as components_list_v
 import './components/list/virtual_list_test.dart' as components_list_virtual_list_test;
 import './components/tree/virtual_tree_primitive_test.dart' as components_tree_virtual_tree_primitive_test;
 import './components/tree/virtual_tree_test.dart' as components_tree_virtual_tree_test;
+import './components/viewport/virtual_viewport_test.dart' as components_viewport_virtual_viewport_test;
 import 'package:test/test.dart';
 import 'package:over_react/over_react.dart' show enableTestMode, setClientConfiguration;
 
@@ -17,4 +18,5 @@ void main() {
   components_list_virtual_list_test.main();
   components_tree_virtual_tree_primitive_test.main();
   components_tree_virtual_tree_test.main();
+  components_viewport_virtual_viewport_test.main();
 }

@@ -9,17 +9,10 @@ import 'package:virtual/src/utils.dart';
 UiFactory<VirtualViewportProps> VirtualViewport;
 
 @Props()
-class VirtualViewportProps extends UiProps {
+class VirtualViewportProps extends UiProps with SharedVirtualProps {
   /// The size of the content within the virutal viewport.
+  @requiredProp
   Size contentSize;
-
-  /// The overall height of the virtual viewport.
-  @requiredProp
-  String height;
-
-  /// The overall width of the virtual viewport.
-  @requiredProp
-  String width;
 
   /// Optional callback that is called when the list is scrolled.
   ViewportScrollCalback onViewportScroll;
@@ -57,6 +50,7 @@ class VirtualViewportComponent extends UiComponent<VirtualViewportProps> {
   ReactElement _renderContent() {
     return (Dom.div()
       ..style = _getConentWrapperStyles()
+      ..addTestId('VirtualViewport.contentWrapper')
     )(props.children);
   }
 

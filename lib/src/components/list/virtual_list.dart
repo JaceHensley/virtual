@@ -31,7 +31,7 @@ import 'package:virtual/src/components.dart';
 UiFactory<VirtualListProps> VirtualList;
 
 @Props()
-class VirtualListProps extends UiProps with SharedVirtualListProps, SharedVirtualCollectionProps {}
+class VirtualListProps extends UiProps with SharedVirtualListProps, SharedVirtualProps, SharedVirtualCollectionProps {}
 
 @State()
 class VirtualListState extends UiState {

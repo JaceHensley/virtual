@@ -11,14 +11,6 @@ abstract class SharedVirtualCollectionProps implements UiProps {
   @override
   Map get props;
 
-  /// The overall height of the virtual collection.
-  @requiredProp
-  String height;
-
-  /// The overall width of the virtual collection.
-  @requiredProp
-  String width;
-
   /// Which direction the virtual scrolls, either vertical or horizontal.
   @requiredProp
   ScrollDirection scrollDirection;

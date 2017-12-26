@@ -20,7 +20,7 @@ void main() {
       mountNode = null;
     });
 
-    test('renders the root node with correct props', () {
+    test('renders a VirtualViewport', () {
       var jacket = mount<VirtualListPrimitiveComponent>((VirtualListPrimitive()
         ..height = '100px'
         ..width = '200px'
@@ -31,24 +31,12 @@ void main() {
           return Dom.div()('Item $index');
         }
       )(), autoTearDown: false, mountNode: mountNode, attachedToDocument: true);
+      var viewportProps = VirtualViewport(getPropsByTestId(jacket.getInstance(), 'VirtualListPrimitive.VirtualViewport'));
 
-      expect(jacket.getNode(), hasProp('style', 'height: 100px; width: 200px; overflow: auto;'));
-    });
 
-    test('renders the inner wrapper node with correct props', () {
-      var jacket = mount<VirtualListPrimitiveComponent>((VirtualListPrimitive()
-        ..height = '100px'
-        ..width = '200px'
-        ..itemCount = 10
-        ..itemSize = new Size.autoWidth(10)
-        ..scrollDirection = ScrollDirection.vertical
-        ..itemRenderer = (index, isScrolling) {
-          return Dom.div()('Item $index');
-        }
-      )(), autoTearDown: false, mountNode: mountNode, attachedToDocument: true);
-      var innerWrapperProps = queryByTestId(jacket.getInstance(), 'VirtualListPrimitive.innerWrapper');
-
-      expect(innerWrapperProps, hasProp('style', 'position: relative; width: 100%; min-height: 100%; height: 100px;'));
+      expect(viewportProps.contentSize.height, 10);
+      expect(viewportProps.contentSize.width, isNull);
+      expect(viewportProps.onViewportScroll, isNotNull);
     });
 
     test('renders the items wrappers with correct props', () {

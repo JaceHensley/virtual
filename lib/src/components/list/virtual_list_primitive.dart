@@ -33,7 +33,7 @@ import 'package:virtual/src/internal.dart';
 UiFactory<VirtualListPrimitiveProps> VirtualListPrimitive;
 
 @Props()
-class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualCollectionProps {
+class VirtualListPrimitiveProps extends UiProps with SharedVirtualListProps, SharedVirtualProps, SharedVirtualCollectionProps {
   /// The scroll offset of the list.
   ///
   /// Default: `0`
@@ -111,11 +111,10 @@ class VirtualListPrimitiveComponent extends UiComponent<VirtualListPrimitiveProp
 
     return (VirtualViewport()
       ..addProps(copyUnconsumedProps())
-      ..height = props.height
-      ..width = props.width
       ..contentSize = contentSize
       ..onViewportScroll = _handleViewportScroll
       ..ref = (ref) { _viewportRef = ref; }
+      ..addTestId('VirtualListPrimitive.VirtualViewport')
     )(_renderChildren());
   }
 
