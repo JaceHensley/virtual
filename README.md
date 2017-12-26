@@ -41,8 +41,7 @@ void main() {
 
 | Name | Type | Required | Default Value | Description |
 |:-----|:-----|:-----|:-----|:-----|
-| `itemCount` | `int` | Yes | - | Number of items to render. |
-| `itemSize` | `Size | List<Size> | ItemSizeCallback` | Yes | - | Either a fixed size, a list containing the sizes of all the items in your list, or a function that returns the size of an item given its index. |
+| `itemSizes` | `ItemSizeCollection` | Yes | - | The collection of item sizes. |
 | `itemRenderer` | `ItemRenderer` | Yes | - | Returns a `ReactElement` given it's index and whether the list is currently scrolling. |
 
 See more props [here](#shared-virtual-collection-props).
